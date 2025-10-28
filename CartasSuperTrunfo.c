@@ -1,8 +1,6 @@
 #include <stdio.h>
 
 // Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das cartas
-// Objetivo: No nível novato você deve criar as cartas representando as cidades utilizando scanf para entrada de dados e printf para exibir as informações.
 
 int main() {
   // ###Área para definição das variáveis para armazenar as propriedades das cidades###
@@ -16,6 +14,7 @@ float area1, area2;
 float PIB1, PIB2;
 float densPopulacional1, densPopulacional2;
 float PIBperCapita1, PIBperCapita2;
+float SuperPoder1, SuperPoder2;
 
 
   //variaveis tem os mesmos nomes, só um numero no final para diferenciar a primeira e segunda carta
@@ -78,13 +77,16 @@ printf("***Sistema de cadastro de cartas***\n");
        scanf("%d", &turismo2);
 
 
-  // ###Área para calculo das variaveis de PIB per capita e densidade populacional###
+  // ###Área para calculo das variaveis de PIB per capita e densidade populacional e super poder###
 
     densPopulacional1 = populacao1 / area1;
     densPopulacional2 = populacao2 / area2;
     PIBperCapita1 = PIB1 / populacao1;
     PIBperCapita2 = PIB2 / populacao2;
-
+    SuperPoder1 =(float)populacao1 + area1 + PIB1 + turismo1 + PIBperCapita1 + (densPopulacional1 * -1); 
+  //calculo da densidade invertida feito na multiplicação *-1 e todos atributos forçados para float com a conversão explicita
+    SuperPoder2 =(float)populacao2 + area2 + PIB2 + turismo2 + PIBperCapita2 + (densPopulacional2 * -1); 
+  //calculo da densidade invertida feito na multiplicação *-1 e todos atributos forçados para float com a conversão explicita
 
   // ###Área para exibição dos dados da cidade###
 
@@ -103,6 +105,7 @@ printf("***Sistema de cadastro de cartas***\n");
     printf("Numero de pontos turisticos: %d\n", turismo1);
     printf("Densidade Populacional: %.2f hab/km² \n", densPopulacional1);
     printf("PIB per Capita: %.2f reais \n", PIBperCapita1);
+    printf("*Super Poder*: %.2f \n", SuperPoder1);
 
     printf("Carta 2: \n");
     printf("Estado: %c\n", estado2);
@@ -114,6 +117,18 @@ printf("***Sistema de cadastro de cartas***\n");
     printf("Numero de pontos turisticos: %d\n", turismo2);
     printf("Densidade Populacional: %.2f hab/km² \n", densPopulacional2);
     printf("PIB per Capita: %.2f reais \n", PIBperCapita2);
+    printf("*Super Poder*: %.2f \n", SuperPoder2);
+
+
+//###Área de exibição da carta que ganhou###
+
+    printf("A carta da cidade de %s venceu no super poder?: %d\n", cidade1, SuperPoder1 > SuperPoder2);
+    printf("A carta da cidade de %s venceu na população?: %d\n", cidade1, populacao1 > populacao2);
+    printf("A carta da cidade de %s venceu em área?: %d\n", cidade1, area1 > area2);
+    printf("A carta da cidade de %s venceu em pontos turisticos?: %d\n", cidade1, turismo1 > turismo2);
+    printf("A carta da cidade de %s venceu em densidade populacional?: %d\n", cidade1, densPopulacional1 < densPopulacional2); //densidade menor ganha, não há necessidade de inverter
+    printf("A carta da cidade de %s venceu em PIB por Capita?: %d\n", cidade1, PIBperCapita1 > PIBperCapita2);
+
 
 return 0;
 } 
